@@ -1,0 +1,58 @@
+[23:44:10] [info] Cuber: -----------------
+[23:44:10] [info] Cuber: positions
+[23:44:10] [trace] Cuber: vec3(1.000000, 1.000000, -1.000000)
+[23:44:10] [info] Cuber: texture
+[23:44:10] [trace] Cuber: vec2(0.625000, 0.250000)
+[23:44:10] [info] Cuber: normals
+[23:44:10] [trace] Cuber: vec3(0.000000, 0.000000, 1.000000)
+[23:44:10] [info] Cuber: -----------------
+[23:44:10] [info] Cuber: positions
+[23:44:10] [trace] Cuber: vec3(-1.000000, -1.000000, 1.000000)
+[23:44:10] [info] Cuber: texture
+[23:44:10] [trace] Cuber: vec2(0.375000, 0.750000)
+[23:44:10] [info] Cuber: normals
+[23:44:10] [trace] Cuber: vec3(0.000000, -1.000000, 0.000000)
+[23:44:10] [info] Cuber: -----------------
+[23:44:10] [info] Cuber: positions
+[23:44:10] [trace] Cuber: vec3(1.000000, -1.000000, -1.000000)
+[23:44:10] [info] Cuber: texture
+[23:44:10] [trace] Cuber: vec2(0.375000, 0.250000)
+[23:44:10] [info] Cuber: normals
+[23:44:10] [trace] Cuber: vec3(0.000000, 0.000000, -1.000000)
+[23:44:10] [warning] Cuber: indices
+[23:44:10] [trace] Cuber: 0
+[23:44:10] [trace] Cuber: 1
+[23:44:10] [trace] Cuber: 2
+[23:44:10] [trace] Cuber: 0
+[23:44:10] [trace] Cuber: 2
+[23:44:10] [trace] Cuber: 3
+[23:44:10] [trace] Cuber: 4
+[23:44:10] [trace] Cuber: 5
+[23:44:10] [trace] Cuber: 6
+[23:44:10] [trace] Cuber: 4
+[23:44:10] [trace] Cuber: 6
+[23:44:10] [trace] Cuber: 7
+[23:44:10] [trace] Cuber: 8
+[23:44:10] [trace] Cuber: 9
+[23:44:10] [trace] Cuber: 10
+[23:44:10] [trace] Cuber: 8
+[23:44:10] [trace] Cuber: 10
+[23:44:10] [trace] Cuber: 11
+[23:44:10] [trace] Cuber: 12
+[23:44:10] [trace] Cuber: 13
+[23:44:10] [trace] Cuber: 14
+[23:44:10] [trace] Cuber: 12
+[23:44:10] [trace] Cuber: 14
+[23:44:10] [trace] Cuber: 15
+[23:44:10] [trace] Cuber: 16
+[23:44:10] [trace] Cuber: 17
+[23:44:10] [trace] Cuber: 18
+[23:44:10] [trace] Cuber: 16
+[23:44:10] [trace] Cuber: 18
+[23:44:10] [trace] Cuber: 19
+[23:44:10] [trace] Cuber: 20
+[23:44:10] [trace] Cuber: 21
+[23:44:10] [trace] Cuber: 22
+[23:44:10] [trace] Cuber: 20
+[23:44:10] [trace] Cuber: 22
+[23:44:10] [trace] Cuber: 23

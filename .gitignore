@@ -1,0 +1,6 @@
+# Ignore content built with CMake
+build
+README1.md
+CMakeFiles
+libraries
+Models
