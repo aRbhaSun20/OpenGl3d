@@ -1,19 +1,21 @@
 #pragma once
 
-#include <json/json.h>
-#include <vector>
+#include "../precomz.h"
+
+// Logger file
+#include "../Core/LogFile.h"
 
 using json = nlohmann::json;
-
 
 class Materials
 {
 private:
     json JsonParser;
-
+    std::string identity = "Materials";
+    Logger::LogFile log;
 public:
     Materials(/* args */)
-    {
+    { log.Init(identity);
         std::ifstream FileParser("../source/Materials/MaterialsProperty.json");
         FileParser >> JsonParser;
     }

@@ -1,14 +1,9 @@
 #pragma once
 
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <unordered_map>
+#include "../precomz.h"
 
-#include <glad/glad.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
+// Logger file
+#include "../Core/LogFile.h"
 
 struct ShaderProgramSource
 {
@@ -21,7 +16,8 @@ class ShaderInitialize
 public:
     unsigned int m_RendererID;
     std::unordered_map<std::string, int> m_Uniform_locationCache;
-
+std::string identity = "Shaders";
+    Logger::LogFile log;
 public:
     ShaderInitialize(const std::string &filepath);
     ~ShaderInitialize();

@@ -1,7 +1,10 @@
 #pragma once
 
-#include <glad/glad.h>
-#include <vector>
+#include "../precomz.h"
+
+// Logger file
+#include "../Core/LogFile.h"
+
 class IndexBuffer
 {
 private:

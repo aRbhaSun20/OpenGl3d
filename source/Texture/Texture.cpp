@@ -2,7 +2,7 @@
 
 Texture::Texture(std::string path, std::string typeName, unsigned int slot)
     : m_FilePath(path), m_LocalBuffer(nullptr), m_Width(0), m_Height(0), m_BPP(0)
-{
+{log.Init(identity); 
     // Assigns the type of the texture ot the texture object
     type = typeName;
 

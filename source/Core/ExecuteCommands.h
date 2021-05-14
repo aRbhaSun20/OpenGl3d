@@ -1,8 +1,7 @@
 #pragma once
-#include <string>
-#include <stdio.h>
-#include <stdlib.h>
-#include <iostream>
+#include "../precomz.h"
+
+#include "LogFile.h"
 
 class ExecuteCommands
 {
@@ -17,7 +16,7 @@ public:
     ExecuteCommands() : m_CommandCount(0){};
 
     void ExecuteSingleCommand(std::string command);
-    
+
     void FetchSingleCommand(std::string command);
 
     void ExecuteMultipleCommands(char *command[], int numberOfCommand);

@@ -1,5 +1,4 @@
 #include "index.h"
-#include "Model_Mesh/model.h"
 
 // camera
 glm::vec3 cameraPos(0.0f, 0.0f, 3.0f);
@@ -18,22 +17,24 @@ float lastY = HEIGHT / 2.0;
 bool firstMouse = true;
 Timestep timestep;
 
+// Log FIle
+// Logger::LogFile LogFile;
+
 // view matrix defination
-// glm::vec3 cameraPosition(0.0f, 0.0f, 3.0f);
 PerspectiveCamera p_camera({0.0f, 0.0f, 3.0f});
+
+
 
 void scroll_callback(GLFWwindow *window, double xoffset, double yoffset);
 
 int main(int argc, char *argv[])
 {
     // glfw initializations
-    // glm::vec3 demo = {1.0f, 1.0f, 1.0f};
 
     Initialize Initiate(WIDTH, HEIGHT, "InitGL");
 
     // Commands Executioner
     ExecuteCommands ExeCommands;
-    // structu newStructure("../Models/cub.obj");
 
     // Event handler
     Event EventHandler(Initiate.getWindowReference(), p_camera, timestep, WIDTH, HEIGHT);
@@ -129,7 +130,6 @@ int main(int argc, char *argv[])
 
                 // render box
                 cube.DrawGeometry(shaderColorCube);
-                // model.Draw(ModelLoader);
             }
 
             {
@@ -140,8 +140,6 @@ int main(int argc, char *argv[])
                 mvp.setMvpMatrix(Projection, p_camera, Light_Cube);
                 shaderLight.SetUniformMat4f("u_MVP", mvp.getMvpMatrix());
                 // render box
-                // newStructure.draw(shaderLight);
-                cube.DrawGeometry(shaderLight);
                 model.Draw(ModelLoader);
             }
 

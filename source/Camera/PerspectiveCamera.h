@@ -1,13 +1,8 @@
 #pragma once
 
-#include <glad/glad.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/quaternion.hpp>
-#include <vector>
+#include "../precomz.h" 
 
-enum class Camera_Movement
-{
+enum class Camera_Movement {
 	FORWARD,
 	BACKWARD,
 	LEFT,

@@ -1,14 +1,18 @@
 #pragma once
 
 // external libraries and packages
-#include "index.h"
+#include "../precomz.h"
+
+// Logger file
+#include "../Core/LogFile.h"
 
 class Initialize
 {
 private:
     int windowWidth, windowHeight;
     GLFWwindow *m_window;
-
+    std::string identity = "Initialize";
+    Logger::LogFile log;
 public:
     Initialize(int, int, const char *);
     GLFWwindow *getWindowReference() { return m_window; }

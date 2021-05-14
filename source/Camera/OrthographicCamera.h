@@ -1,8 +1,6 @@
 #pragma once
 
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
+#include "../precomz.h"
 // #include <iostream>
 
 class OrthographicCamera
@@ -51,6 +49,4 @@ public:
     void MvpHandleModel(glm::vec3);
     void CameraTransformation(glm::vec3 transformation);
     void MvpHandleCamera(glm::vec3 cameraPos, glm::vec3 cameraFront, glm::vec3 cameraUp);
-
 };
-

@@ -2,13 +2,13 @@
 
 Initialize ::Initialize(int width, int height, const char *title)
     : windowHeight(height), windowWidth(width)
-{
+{log.Init(identity);
     glfwSetErrorCallback(error_callback);
 
     if (!glfwInit())
-        Log("Failure to initialize glfw");
+        std::cout << "Failure to initialize glfw" << std::endl;
 
-   m_window = glfwCreateWindow(windowWidth, windowHeight, title, nullptr, nullptr);
+    m_window = glfwCreateWindow(windowWidth, windowHeight, title, nullptr, nullptr);
 
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -18,7 +18,7 @@ Initialize ::Initialize(int width, int height, const char *title)
     if (!m_window)
     {
         glfwTerminate();
-        Log("Window cration failure");
+        std::cout << "Window cration failure" << std::endl;
         return;
     }
     glfwMakeContextCurrent(m_window);
@@ -37,7 +37,7 @@ void Initialize ::Gladinitialization()
 
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
-        Log("Failure to initialize glad");
+        std::cout << "Failure to initialize glad" << std::endl;
         return;
     }
 }

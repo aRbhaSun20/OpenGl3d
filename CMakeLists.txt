@@ -55,7 +55,8 @@ set(CAMERA_FILES "${CAMERA_DIR}/OrthographicCamera.h" "${CAMERA_DIR}/Orthographi
 set(CORE_DIRS "${SRC_DIR}/Core")
 set(CORE_FILES "${CORE_DIRS}/Timestep.h" 
 "${CORE_DIRS}/ExecuteCommands.h" "${CORE_DIRS}/ExecuteCommands.cpp" "${CORE_DIRS}/KeyCodes.h"
-"${CORE_DIRS}/MouseCodes.h" "${CORE_DIRS}/LightType.h" "${CORE_DIRS}/Log.h" "${CORE_DIRS}/Log.cpp")
+"${CORE_DIRS}/MouseCodes.h" "${CORE_DIRS}/LightType.h" "${CORE_DIRS}/LogFile.h" "${CORE_DIRS}/LogFile.cpp"
+)
 
 #Material Contents
 set(MATERIAL_DIRS "${SRC_DIR}/Materials")
@@ -67,9 +68,7 @@ set(EVENT_FILES "${EVENT_DIRS}/Event.h" "${EVENT_DIRS}/Event.cpp")
 
 #Geometrical Structures
 set(GEOMETRICAL_DIR "${SRC_DIR}/GeometricalStructure")
-set(GEOMETRICAL_FILES "${GEOMETRICAL_DIR}/CubeStructure.h" "${GEOMETRICAL_DIR}/CubeStructure.cpp"
-#"${GEOMETRICAL_DIR}/structu.h" "${GEOMETRICAL_DIR}/structu.cpp" 
-)
+set(GEOMETRICAL_FILES "${GEOMETRICAL_DIR}/CubeStructure.h" "${GEOMETRICAL_DIR}/CubeStructure.cpp")
 
 #Initializer Contents
 set(INITIALIZER_DIR "${SRC_DIR}/Initializer")

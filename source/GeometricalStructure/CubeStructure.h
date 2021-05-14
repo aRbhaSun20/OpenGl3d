@@ -1,6 +1,6 @@
 #pragma once
 
-#include <memory>
+#include "../precomz.h"
 
 #include "../VertexBuffers/VertexBuffer.h"
 #include "../IndexBuffers/IndexBuffer.h"
@@ -8,6 +8,9 @@
 #include "../VertexBufferLayouts/VertexBufferLayout.h"
 #include "../Renderer/Renderer.h"
 #include "../Shaders/ShaderInitialize.h"
+
+// Logger file
+#include "../Core/LogFile.h"
 
 class VertexBuffer;
 class IndexBuffer;

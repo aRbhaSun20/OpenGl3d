@@ -2,7 +2,7 @@
 
 ShaderInitialize::ShaderInitialize(const std::string &filepath)
     : m_RendererID(0)
-{
+{log.Init(identity);
     ShaderProgramSource source = ParseShader(filepath);
     m_RendererID = CreateShader(source.VertexSource, source.FragmentSource);
 }

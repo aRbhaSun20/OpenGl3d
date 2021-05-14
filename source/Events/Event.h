@@ -1,10 +1,6 @@
 #pragma once
 
-#include <GLFW/glfw3.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/rotate_vector.hpp>
-#include <glm/gtx/vector_angle.hpp>
+#include "../precomz.h"
 
 #include "../Camera/PerspectiveCamera.h"
 #include "../Core/Timestep.h"
@@ -12,6 +8,8 @@
 #include "../Core/KeyCodes.h"
 #include "../Core/MouseCodes.h"
 
+// Logger file
+#include "../Core/LogFile.h"
 
 class Event
 {

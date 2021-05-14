@@ -1,14 +1,13 @@
 #pragma once
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-#include <iostream>
-
-#include <imgui/imgui.h>
+#include "../precomz.h"
 #include "ImGuiBuild.h"
 
 #include "../Texture/Texture.h"
 #include "../Core/ExecuteCommands.h"
+
+// Logger file
+#include "../Core/LogFile.h"
 
 class Texture;
 class ImguiHandle

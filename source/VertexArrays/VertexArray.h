@@ -3,6 +3,9 @@
 #include "../VertexBuffers/VertexBuffer.h"
 #include "../VertexBufferLayouts/VertexBufferLayout.h"
 
+// Logger file
+#include "../Core/LogFile.h"
+
 class VertexBuffer;
 class VertexBufferLayout;
 
@@ -10,9 +13,11 @@ class VertexArray
 {
 private:
     unsigned int m_RenderedID;
+    std::string identity = "VertexArray";
+    Logger::LogFile log;
 
 public:
-    VertexArray();
+    VertexArray() {log.Init(identity);};
     ~VertexArray();
 
     void AddBuffer(const VertexBuffer &, const VertexBufferLayout &);

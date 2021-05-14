@@ -1,11 +1,13 @@
 #pragma once
 
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
+#include "../precomz.h"
 
 #include "ModelMatrix.h"
 #include "ProjectionMatrix.h"
 #include "../Camera/PerspectiveCamera.h"
+
+// Logger file
+#include "../Core/LogFile.h"
 
 class MvpMatrix
 {
@@ -14,9 +16,14 @@ private:
     glm::mat4 m_Projection, m_View, m_Model;
     glm::mat4 u_MVP;
     glm::mat4 u_VP;
-
+std::string identity = "Mvps";
+std::string fileName = "MvpMatrix";
+    Logger::LogFile log;
 public:
     // model,view,projection mvp matrix
+    MvpMatrix(){
+        log.Initdiffer(fileName,identity);
+    }
 
     void setMvpMatrix(ProjectionMatrix &, PerspectiveCamera &, ModelMatrix &);
     glm::mat4 getMvpMatrix() { return u_MVP; };

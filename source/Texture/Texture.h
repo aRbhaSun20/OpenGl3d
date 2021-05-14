@@ -1,11 +1,12 @@
 #pragma once
 
-#include <string>
-
-#include <StdImage/stb_image.h>
+#include "../precomz.h"
 
 #include "../Renderer/Renderer.h"
 #include "../Shaders/ShaderInitialize.h"
+
+// Logger file
+#include "../Core/LogFile.h"
 
 class ShaderInitialize;
 
@@ -19,6 +20,8 @@ private:
     int m_Width, m_Height, m_BPP;
     std::string type;
     unsigned int unit;
+std::string identity = "Texture";
+    Logger::LogFile log;
 
 public:
     Texture(std::string path, std::string typeName, unsigned int slot);
