@@ -20,9 +20,7 @@ namespace Logger
     class LogFile
     {
     public:
-        LogFile() = default;
-        void Init(std::string identifier);
- void Initdiffer(std::string fileName,std::string identifier);
+        LogFile();
         static Ref<spdlog::logger> &GetCoreLogger() { return s_CoreLogger; }
 
     private:

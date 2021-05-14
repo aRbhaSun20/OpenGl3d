@@ -11,11 +11,10 @@ class Materials
 {
 private:
     json JsonParser;
-    std::string identity = "Materials";
-    Logger::LogFile log;
+
 public:
     Materials(/* args */)
-    { log.Init(identity);
+    { 
         std::ifstream FileParser("../source/Materials/MaterialsProperty.json");
         FileParser >> JsonParser;
     }

@@ -11,8 +11,7 @@ class Initialize
 private:
     int windowWidth, windowHeight;
     GLFWwindow *m_window;
-    std::string identity = "Initialize";
-    Logger::LogFile log;
+
 public:
     Initialize(int, int, const char *);
     GLFWwindow *getWindowReference() { return m_window; }

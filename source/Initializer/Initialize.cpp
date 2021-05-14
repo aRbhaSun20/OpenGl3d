@@ -2,7 +2,7 @@
 
 Initialize ::Initialize(int width, int height, const char *title)
     : windowHeight(height), windowWidth(width)
-{log.Init(identity);
+{
     glfwSetErrorCallback(error_callback);
 
     if (!glfwInit())

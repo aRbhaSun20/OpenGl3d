@@ -21,11 +21,9 @@ class VertexBuffer
 {
 private:
     unsigned int m_RendererId;
-    std::string identity = "VertexBuffers";
-    Logger::LogFile log;
 
 public:
-    VertexBuffer() { log.Init(identity); };
+    VertexBuffer() =default;
 
     void AddBuffer(const void *data, unsigned int size);
     void AddBufferv(std::vector<float> data);

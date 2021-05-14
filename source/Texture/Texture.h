@@ -20,8 +20,6 @@ private:
     int m_Width, m_Height, m_BPP;
     std::string type;
     unsigned int unit;
-std::string identity = "Texture";
-    Logger::LogFile log;
 
 public:
     Texture(std::string path, std::string typeName, unsigned int slot);

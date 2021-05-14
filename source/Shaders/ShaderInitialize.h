@@ -16,8 +16,7 @@ class ShaderInitialize
 public:
     unsigned int m_RendererID;
     std::unordered_map<std::string, int> m_Uniform_locationCache;
-std::string identity = "Shaders";
-    Logger::LogFile log;
+
 public:
     ShaderInitialize(const std::string &filepath);
     ~ShaderInitialize();

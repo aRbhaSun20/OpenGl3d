@@ -16,13 +16,11 @@ private:
     glm::mat4 m_Projection, m_View, m_Model;
     glm::mat4 u_MVP;
     glm::mat4 u_VP;
-std::string identity = "Mvps";
-std::string fileName = "MvpMatrix";
-    Logger::LogFile log;
+
 public:
     // model,view,projection mvp matrix
     MvpMatrix(){
-        log.Initdiffer(fileName,identity);
+        // log.Initdiffer(fileName,identity);
     }
 
     void setMvpMatrix(ProjectionMatrix &, PerspectiveCamera &, ModelMatrix &);

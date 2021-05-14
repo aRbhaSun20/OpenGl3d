@@ -17,8 +17,7 @@ private:
     Materials material;
     unsigned char Lighttype;
     std::string l_MaterialType;
-    std::string identity = "Light";
-    Logger::LogFile log;
+
 private:
     // ambient material vector is the color the surface reflects under ambient lighting, usually the surface color
     glm::vec3 ambientStrength;
@@ -45,7 +44,7 @@ private:
 public:
     Light(unsigned char ltype, std::string MaterialType)
         : Lighttype(ltype), l_MaterialType(MaterialType)
-    {log.Init(identity);
+    {
         setMaterialLight(MaterialType);
     }
 

@@ -14,11 +14,10 @@ class ShaderInitialize;
 class Renderer
 {
 private:
-    std::string identity = "Renderer";
-    Logger::LogFile log;
+
 
 public:
-    Renderer() { log.Init(identity); };
+    Renderer() {  };
 
     void Clear(float *color);
     void Draw(const VertexArray &, const IndexBuffer &, const ShaderInitialize &) const;

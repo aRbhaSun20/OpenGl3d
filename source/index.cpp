@@ -18,12 +18,10 @@ bool firstMouse = true;
 Timestep timestep;
 
 // Log FIle
-// Logger::LogFile LogFile;
+Logger::LogFile LogFile;
 
 // view matrix defination
 PerspectiveCamera p_camera({0.0f, 0.0f, 3.0f});
-
-
 
 void scroll_callback(GLFWwindow *window, double xoffset, double yoffset);
 
