@@ -1,8 +1,9 @@
 #include "Texture.h"
 
-Texture::Texture(std::string path, std::string typeName, unsigned int slot)
-    : m_FilePath(path), m_LocalBuffer(nullptr), m_Width(0), m_Height(0), m_BPP(0)
-{ 
+Texture::Texture(std::string path, std::string typeName, unsigned int slot, Logger::LogFile &LogFile)
+    : m_FilePath(path), m_LocalBuffer(nullptr),
+      m_Width(0), m_Height(0), m_BPP(0), p_File(LogFile)
+{
     // Assigns the type of the texture ot the texture object
     type = typeName;
 
@@ -44,9 +45,9 @@ Texture::Texture(std::string path, std::string typeName, unsigned int slot)
     }
 }
 
-Texture::Texture(const std::string &path)
+Texture::Texture(const std::string &path, Logger::LogFile &LogFile)
     : m_FilePath(path), m_LocalBuffer(nullptr),
-      m_Width(0), m_Height(0), m_BPP(0)
+      m_Width(0), m_Height(0), m_BPP(0), p_File(LogFile)
 {
     glGenTextures(1, &m_RendererID);
     glBindTexture(GL_TEXTURE_2D, m_RendererID);

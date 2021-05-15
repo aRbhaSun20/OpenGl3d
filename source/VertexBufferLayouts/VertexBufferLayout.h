@@ -1,5 +1,7 @@
 #pragma once
-#include "../precomz.h"
+#include <Precomz/precomz.h>
+
+#include <glad/glad.h>  //glad for opengl libraries
 
 // Logger file
 #include "../Core/LogFile.h"

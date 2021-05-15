@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../precomz.h"
+#include <Precomz/precomz.h>
 
 template <typename T>
 using Ref = std::shared_ptr<T>;

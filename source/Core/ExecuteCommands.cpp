@@ -1,15 +1,14 @@
 #include "ExecuteCommands.h"
 
-void ExecuteCommands::ExecuteSingleCommand(std::string command)
+std::string ExecuteCommands::ExecuteSingleCommand(std::string command)
 {
-    m_Command = command;
     std::string data;
     FILE *stream;
     const int max_buffer = 1024;
     char buffer[max_buffer];
-    m_Command.append(" 2>&1");
+    command.append(" 2>&1");
 
-    stream = popen(m_Command.c_str(), "r");
+    stream = popen(command.c_str(), "r");
 
     if (stream)
     {
@@ -18,18 +17,14 @@ void ExecuteCommands::ExecuteSingleCommand(std::string command)
                 data.append(buffer);
         pclose(stream);
     }
-    
+
     data.pop_back();
-    m_Result = data;
+
+    return data;
 }
 
-void ExecuteCommands::ExecuteMultipleCommands(char *command[], int numberOfCommand)
+void ExecuteCommands::ExecuteMultipleCommands(std::vector<std::string> commands) 
 {
-    for (int i = 0; i < numberOfCommand; i++)
-    {
-        ExecuteSingleCommand(command[i]);
-        m_MultipleResult.append(m_Result);
-        MultipleCommand[i] = command[i];
-    }
-    m_CommandCount = numberOfCommand;
+    for (int i = 0; i < commands.size(); i++)
+        m_MultipleResult.push_back(ExecuteSingleCommand(commands[i]));   
 }

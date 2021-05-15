@@ -1,5 +1,9 @@
 #pragma once
 
+// external added libraries and packages
+#include <glad/glad.h> //glad for opengl libraries
+#include <GLFW/glfw3.h>  //opengl library
+
 #include "../VertexBuffers/VertexBuffer.h"
 #include "../VertexBufferLayouts/VertexBufferLayout.h"
 

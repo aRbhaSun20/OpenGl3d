@@ -1,6 +1,8 @@
 #pragma once
 
-#include "../precomz.h"
+#include <Precomz/precomz.h>
+
+#include <json/json.h>
 
 // Logger file
 #include "../Core/LogFile.h"

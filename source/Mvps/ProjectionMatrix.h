@@ -1,6 +1,10 @@
 #pragma once
 
-#include "../precomz.h"
+#include <Precomz/precomz.h>
+
+#include <glm/glm.hpp> //maths library
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 // Logger file
 #include "../Core/LogFile.h"
@@ -17,10 +21,11 @@ private:
     float m_Zfar = 0.0f;
     float m_Znear = 0.0f;
     glm::mat4 m_Projection;
+    Logger::LogFile &p_File;
 
 public:
-    ProjectionMatrix(float Zoom, float AspectRatio, float zNear, float zFar)
-        : m_ZoomLevel(Zoom), m_AspectRatio(AspectRatio), m_Zfar(zFar), m_Znear(zNear)
+    ProjectionMatrix(float Zoom, float AspectRatio, float zNear, float zFar, Logger::LogFile &LogFile)
+        : m_ZoomLevel(Zoom), m_AspectRatio(AspectRatio), m_Zfar(zFar), m_Znear(zNear), p_File(LogFile)
     {
         // log.Initdiffer(fileName,identity);
         m_Projection = glm::perspective(glm::radians(m_ZoomLevel), m_AspectRatio, m_Znear, m_Zfar);

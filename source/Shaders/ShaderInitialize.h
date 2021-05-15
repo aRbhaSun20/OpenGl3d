@@ -1,6 +1,12 @@
 #pragma once
 
-#include "../precomz.h"
+#include <Precomz/precomz.h>
+
+#include <glad/glad.h>  //glad for opengl libraries
+
+#include <glm/glm.hpp> //maths library
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 // Logger file
 #include "../Core/LogFile.h"
@@ -16,9 +22,10 @@ class ShaderInitialize
 public:
     unsigned int m_RendererID;
     std::unordered_map<std::string, int> m_Uniform_locationCache;
+    Logger::LogFile &p_File;
 
 public:
-    ShaderInitialize(const std::string &filepath);
+    ShaderInitialize(const std::string &filepath,Logger::LogFile &LogFile);
     ~ShaderInitialize();
 
     void Bind() const;

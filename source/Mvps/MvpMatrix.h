@@ -1,6 +1,10 @@
 #pragma once
 
-#include "../precomz.h"
+#include <Precomz/precomz.h>
+
+#include <glm/glm.hpp> //maths library
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #include "ModelMatrix.h"
 #include "ProjectionMatrix.h"
@@ -16,10 +20,13 @@ private:
     glm::mat4 m_Projection, m_View, m_Model;
     glm::mat4 u_MVP;
     glm::mat4 u_VP;
+    Logger::LogFile &p_File;
 
 public:
     // model,view,projection mvp matrix
-    MvpMatrix(){
+    MvpMatrix(Logger::LogFile &LogFile)
+        : p_File(LogFile)
+    {
         // log.Initdiffer(fileName,identity);
     }
 

@@ -1,7 +1,7 @@
 #include "Initialize.h"
 
-Initialize ::Initialize(int width, int height, const char *title)
-    : windowHeight(height), windowWidth(width)
+Initialize ::Initialize(int width, int height, const char *title, Logger::LogFile &LogFile)
+    : windowHeight(height), windowWidth(width), index_File(LogFile)
 {
     glfwSetErrorCallback(error_callback);
 

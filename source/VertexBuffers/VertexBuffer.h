@@ -1,5 +1,10 @@
 #pragma once
-#include "../precomz.h"
+
+#include <glad/glad.h> //glad for opengl libraries
+
+#include <glm/glm.hpp> //maths library
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #include "../Core/LogFile.h"
 

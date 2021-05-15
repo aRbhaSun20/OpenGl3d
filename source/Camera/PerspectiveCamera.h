@@ -1,8 +1,16 @@
 #pragma once
 
-#include "../precomz.h" 
+#include <Precomz/precomz.h>
+#include "../Core/LogFile.h"
 
-enum class Camera_Movement {
+#include <glad/glad.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/quaternion.hpp>
+#include <vector>
+
+enum class Camera_Movement
+{
 	FORWARD,
 	BACKWARD,
 	LEFT,
@@ -32,6 +40,8 @@ private:
 	glm::vec3 WorldUp;
 	glm::mat4 viewMatrix;
 
+	Logger::LogFile &p_File;
+
 private:
 	float radius;
 	float phi;
@@ -47,15 +57,16 @@ private:
 	void updateCameraVectors();
 
 public:
-	PerspectiveCamera(glm::vec3 position = {0.0f, 0.0f, 0.0f}, glm::vec3 up = {0.0f, 1.0f, 0.0f}, float yaw = YAW, float pitch = PITCH)
-		: MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY),
+	PerspectiveCamera(Logger::LogFile &LogFile, glm::vec3 position = {0.0f, 0.0f, 0.0f}, glm::vec3 up = {0.0f, 1.0f, 0.0f}, float yaw = YAW, float pitch = PITCH)
+		: p_File(LogFile), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY),
 		  Zoom(ZOOM), Position(position), WorldUp(up), Yaw(yaw), Pitch(pitch)
 	{
 		updateCameraVectors();
 	}
-	PerspectiveCamera(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch)
+	PerspectiveCamera(Logger::LogFile &LogFile, float posX, float posY, float posZ, float upX,
+					  float upY, float upZ, float yaw = YAW, float pitch = PITCH)
 		: Orientation({0.0f, 0.0f, -1.0f}), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM),
-		  Position({posX, posY, posZ}), WorldUp({upX, upY, upZ}), Yaw(yaw), Pitch(pitch)
+		  Position({posX, posY, posZ}), WorldUp({upX, upY, upZ}), Yaw(yaw), Pitch(pitch), p_File(LogFile)
 	{
 		updateCameraVectors();
 	}

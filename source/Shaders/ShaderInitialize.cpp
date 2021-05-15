@@ -1,7 +1,7 @@
 #include "ShaderInitialize.h"
 
-ShaderInitialize::ShaderInitialize(const std::string &filepath)
-    : m_RendererID(0)
+ShaderInitialize::ShaderInitialize(const std::string &filepath,Logger::LogFile &LogFile)
+    : m_RendererID(0),p_File(LogFile)
 {
     ShaderProgramSource source = ParseShader(filepath);
     m_RendererID = CreateShader(source.VertexSource, source.FragmentSource);

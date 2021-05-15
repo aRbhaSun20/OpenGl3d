@@ -1,19 +1,23 @@
 #pragma once
 
 // external libraries and packages
-#include "../precomz.h"
+#include <Precomz/precomz.h>
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 
 // Logger file
 #include "../Core/LogFile.h"
+
 
 class Initialize
 {
 private:
     int windowWidth, windowHeight;
     GLFWwindow *m_window;
+    Logger::LogFile &index_File;
 
 public:
-    Initialize(int, int, const char *);
+    Initialize(int, int, const char *, Logger::LogFile &);
     GLFWwindow *getWindowReference() { return m_window; }
     void Gladinitialization();
     ~Initialize();

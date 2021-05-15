@@ -21,7 +21,7 @@ Timestep timestep;
 Logger::LogFile LogFile;
 
 // view matrix defination
-PerspectiveCamera p_camera({0.0f, 0.0f, 3.0f});
+PerspectiveCamera p_camera(LogFile,{0.0f, 0.0f, 3.0f});
 
 void scroll_callback(GLFWwindow *window, double xoffset, double yoffset);
 
@@ -29,13 +29,13 @@ int main(int argc, char *argv[])
 {
     // glfw initializations
 
-    Initialize Initiate(WIDTH, HEIGHT, "InitGL");
+    Initialize Initiate(WIDTH, HEIGHT, "InitGL", LogFile);
 
     // Commands Executioner
-    ExecuteCommands ExeCommands;
+    ExecuteCommands ExeCommands(LogFile);
 
     // Event handler
-    Event EventHandler(Initiate.getWindowReference(), p_camera, timestep, WIDTH, HEIGHT);
+    Event EventHandler(Initiate.getWindowReference(), p_camera, timestep, WIDTH, HEIGHT, LogFile);
 
     glfwSetScrollCallback(Initiate.getWindowReference(), scroll_callback);
     glfwSetInputMode(Initiate.getWindowReference(), GLFW_CURSOR, GLFW_CURSOR_NORMAL);
@@ -50,44 +50,43 @@ int main(int argc, char *argv[])
         // glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glEnable(GL_CULL_FACE);
 
-        CubeStructures cube;
+        CubeStructures cube(LogFile);
         Model model("../Models/Cube/cube.obj");
 
-        ShaderInitialize shaderColorCube("../source/Shaders/Color.shader");
-        ShaderInitialize shaderLight("../source/Shaders/Light.shader");
-        ShaderInitialize ModelLoader("../source/Shaders/loading.shader");
+        ShaderInitialize shaderColorCube("../source/Shaders/Color.shader", LogFile);
+        ShaderInitialize shaderLight("../source/Shaders/Light.shader", LogFile);
+        ShaderInitialize ModelLoader("../source/Shaders/loading.shader", LogFile);
 
         // projection matrix defination
         float Field_Of_View = 60.0f; //greater results zoom out ,vice-versa
         float AspectRatio = lastX / lastY;
-        ProjectionMatrix Projection(Field_Of_View, AspectRatio, 0.1f, 100.0f);
+        ProjectionMatrix Projection(Field_Of_View, AspectRatio, 0.1f, 100.0f, LogFile);
 
         //Object model matrix defination
         glm::vec3 Object_Translation(-0.25f, -0.25f, 0.0f);
         float Object_Angle = 0.0f;
         glm ::vec3 Object_AxisRotation(0.0f, 0.0f, 0.0f);
-        ModelMatrix Object_Cube(Object_Translation, Object_Angle, Object_AxisRotation);
+        ModelMatrix Object_Cube(Object_Translation, Object_Angle, Object_AxisRotation, LogFile);
         Object_Cube.setModelScale(0.5);
 
         //Light model matrix defination
         glm::vec3 Light_Translation(1.2f, 1.0f, 0.8f);
         float Light_Angle = 0.0f;
         glm ::vec3 Light_AxisRotation(0.0f, 0.0f, 0.0f);
-        ModelMatrix Light_Cube(Light_Translation, Light_Angle, Light_AxisRotation, 0.2f);
-        Light_Cube.setModelScale(1.0);
+        ModelMatrix Light_Cube(Light_Translation, Light_Angle, Light_AxisRotation,LogFile ,0.2f);
 
         // Mvp matrix defination
-        MvpMatrix mvp;
+        MvpMatrix mvp(LogFile);
 
-        Texture Wooden_Box("../images/woodenContainer.png");
+        Texture Wooden_Box("../images/woodenContainer.png", LogFile);
         Wooden_Box.Bind(0);
-        Texture Steel_Frame("../images/woodenContainerSspecular.png");
+        Texture Steel_Frame("../images/woodenContainerSspecular.png", LogFile);
         Steel_Frame.Bind(1);
 
         glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
 
         // select light type
-        Light lightType(LightType::PointLightSource, "Gold");
+        Light lightType(LightType::PointLightSource, "Gold", LogFile);
 
         // select bg color
         float BGcolor[4] = {0.4f, 0.2f, 0.2f, 1.0f};

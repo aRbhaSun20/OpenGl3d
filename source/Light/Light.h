@@ -1,5 +1,7 @@
 #pragma once
-#include "../precomz.h"
+#include <Precomz/precomz.h>
+
+#include <glm/glm.hpp> //maths library
 
 #include "../Shaders/ShaderInitialize.h"
 #include "../Core/LightType.h"
@@ -17,6 +19,7 @@ private:
     Materials material;
     unsigned char Lighttype;
     std::string l_MaterialType;
+    Logger::LogFile &p_File;
 
 private:
     // ambient material vector is the color the surface reflects under ambient lighting, usually the surface color
@@ -42,8 +45,8 @@ private:
     float quadratic_source;
 
 public:
-    Light(unsigned char ltype, std::string MaterialType)
-        : Lighttype(ltype), l_MaterialType(MaterialType)
+    Light(unsigned char ltype, std::string MaterialType, Logger::LogFile &LogFile)
+        : Lighttype(ltype), l_MaterialType(MaterialType), p_File(LogFile)
     {
         setMaterialLight(MaterialType);
     }
@@ -89,25 +92,25 @@ public:
 
         if (Lighttype == LightType::SpotLightSmoothSource)
         {
-        Lightshader.SetUniform1f("u_Material.spotSource.outerCutOff", SpotOuterCutoff);
+            Lightshader.SetUniform1f("u_Material.spotSource.outerCutOff", SpotOuterCutoff);
         }
 
         if (Lighttype == LightType::SpotLightSource || Lighttype == LightType::SpotLightSmoothSource)
         {
-        LightDirection = Orientation;
-        Lightshader.SetUniform3fv("u_Material.spotSource.direction", LightDirection);
-        Lightshader.SetUniform1f("u_Material.spotSource.cutOff", SpotCutoff);
+            LightDirection = Orientation;
+            Lightshader.SetUniform3fv("u_Material.spotSource.direction", LightDirection);
+            Lightshader.SetUniform1f("u_Material.spotSource.cutOff", SpotCutoff);
         }
 
         if (Lighttype == LightType::PointLightSource || Lighttype == LightType::SpotLightSource || Lighttype == LightType::SpotLightSmoothSource)
         {
-        Lightshader.SetUniform1f("u_Material.pointSource.constant_Pointsource", constant_source);
-        Lightshader.SetUniform1f("u_Material.pointSource.linear_Pointsource", linear_source);
-        Lightshader.SetUniform1f("u_Material.pointSource.quadratic_Pointsource", quadratic_source);
+            Lightshader.SetUniform1f("u_Material.pointSource.constant_Pointsource", constant_source);
+            Lightshader.SetUniform1f("u_Material.pointSource.linear_Pointsource", linear_source);
+            Lightshader.SetUniform1f("u_Material.pointSource.quadratic_Pointsource", quadratic_source);
         }
         if (Lighttype != LightType::NoLightSource)
         {
-            Lightshader.SetUniform3fv("u_Color",whiteDefault);
+            Lightshader.SetUniform3fv("u_Color", whiteDefault);
         }
     }
 };

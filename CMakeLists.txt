@@ -1,6 +1,6 @@
 # Project definition
 cmake_minimum_required(VERSION 3.1)
-project(OpenGL)
+project(OpenGL C CXX)
 
 # Source files
 set(SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/source")
@@ -91,38 +91,22 @@ set(LIGHT_DIR "${SRC_DIR}/Light")
 set(LIGHT_FILES "${LIGHT_DIR}/Light.h")
 
 # Application files 
-set(SECONDARY "${SRC_DIR}/precomz.h" "${SRC_DIR}/index.h" "${INITIALIZER_FILES}" 
+set(SECONDARY "${SRC_DIR}/index.h" "${INITIALIZER_FILES}" 
     "${VERTEX_BUFFER}" "${INDEX_BUFFER}" "${SHADER_FILES}" "${CORE_FILES}"
     "${VERTEX_ARRAY}" "${VERTEX_BUFFER_LAYOUT}"  "${TEXTURE_FILES}"  
     "${MVP_FILES}" "${CAMERA_FILES}" "${EVENT_FILES}" "${MATERIAL_FILES}" 
     "${RENDERER_FILES}" "${GEOMETRICAL_FILES}" "${MODEL_MESH_FILES}"
-    "${LIGHT_FILES}"
+    "${LIGHT_FILES}" "${IMGUI_HANDLER_FILES}" 
 )
-#"${IMGUI_HANDLER_FILES}"  
-
-# imgui libraires
-file(GLOB_RECURSE IMGUI
-"${LIB_DIR}/imgui/*.cpp"
-"${LIB_DIR}/imgui/*.h"
-)
+ 
 
 # spdlog libraires
 file(GLOB_RECURSE SPDLOG
 "${LIB_DIR}/spdlog/*.h" "${LIB_DIR}/spdlog/cfg/*.h" "${LIB_DIR}/spdlog/details/*.h" "${LIB_DIR}/spdlog/fmt/*.h"
  "${LIB_DIR}/spdlog/fmt/bundled/*.h" "${LIB_DIR}/spdlog/sinks/*.h") 
 
-# json nlohmann
-set(JSON_LOADER_DIR "${LIB_DIR}/json")
-set(JSON_LOADER_FILES "${JSON_LOADER_DIR}/json.h")
-
-set(ASSIMP_DIR "${LIB_DIR}/assimp")
-file(GLOB_RECURSE Assimp_FIles
-"${LIB_DIR}/include/*.h" "${LIB_DIR}/include/*.hpp" "${LIB_DIR}/include/*.inl" "${LIB_DIR}/include/Compiler/*.h") 
-#target_link_libraries(${PROJECT_NAME} assim)
-#target_link_libraries("${ASSIMP_DIR}/lib32")
-
 # Library files
-set(LIBRARY_FILES "${IMGUI}" "${JSON_LOADER_FILES}" "${SPDLOG}" "${Assimp_FIles}")
+set(LIBRARY_FILES "${SPDLOG}")
 
 #source Executables
 set(SOURCES "${SOURCE_FILE}" "${SECONDARY}" "${LIBRARY_FILES}")
@@ -130,7 +114,12 @@ set(SOURCES "${SOURCE_FILE}" "${SECONDARY}" "${LIBRARY_FILES}")
 # Executable definition and properties
 add_executable("${PROJECT_NAME}" "${SOURCES}")
 target_include_directories(${PROJECT_NAME} PRIVATE "${SRC_DIR}")
-set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 11)
+set_property(TARGET ${PROJECT_NAME} PROPERTY C CXX_STANDARD 11 ) 
+
+#precomiler headers
+set(PRECOMZ_DIR "${LIB_DIR}/Precomz")
+add_subdirectory(${PRECOMZ_DIR})
+target_link_libraries("${PROJECT_NAME}" "precomz")
 
 # GLFW
 set(GLFW_DIR "${LIB_DIR}/glfw")
@@ -151,18 +140,27 @@ target_include_directories(${PROJECT_NAME} PRIVATE "${GLAD_DIR}/include")
 target_link_libraries(${PROJECT_NAME} "glad" "${CMAKE_DL_LIBS}")
 
 # stb_image
- set(STB_IMAGE_DIR "${LIB_DIR}/StdImage")
- add_library("STB_IMAGE" "${STB_IMAGE_DIR}/stb_image.cpp")
- target_include_directories("STB_IMAGE" PRIVATE "${STB_IMAGE_DIR}")
- target_include_directories(${PROJECT_NAME} PRIVATE "${STB_IMAGE_DIR}")
- target_link_libraries(${PROJECT_NAME} "STB_IMAGE" "libassimp.so.5.0.1")
+set(STB_IMAGE_DIR "${LIB_DIR}/StdImage")
+add_library("STB_IMAGE" "${STB_IMAGE_DIR}/stb_image.cpp")
+target_include_directories("STB_IMAGE" PRIVATE "${STB_IMAGE_DIR}")
+target_include_directories(${PROJECT_NAME} PRIVATE "${STB_IMAGE_DIR}")
+target_link_libraries(${PROJECT_NAME} "STB_IMAGE" "libassimp.so.5.0.1")
 
 # Math Library
 set(GLM_DIR "${LIB_DIR}/glm")
 add_subdirectory("${GLM_DIR}" EXCLUDE_FROM_ALL)
 target_link_libraries(${PROJECT_NAME} glm)
 
+# Imgui Library
+set(IMGUI_DIR "${LIB_DIR}/imgui")
+add_subdirectory(${IMGUI_DIR})
+target_link_libraries(${PROJECT_NAME} "imgui")
+
+# Json Library
+set(JSON_DIR "${LIB_DIR}/json")
+add_subdirectory(${JSON_DIR})
+target_link_libraries(${PROJECT_NAME} "json")
+
 # Assimp Library
-#set(Assimp_DIR "${LIB_DIR}/assimp")
-#add_subdirectory("${Assimp_DIR}" EXCLUDE_FROM_ALL)
-#target_link_libraries(${PROJECT_NAME} assimp)
+set(ASSIMP_DIR "${LIB_DIR}/assimp/include")
+target_link_libraries("${PROJECT_NAME}" libassimp.so.5.0.1)

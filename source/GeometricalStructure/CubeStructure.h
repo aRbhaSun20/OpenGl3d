@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../precomz.h"
+#include <Precomz/precomz.h>
 
 #include "../VertexBuffers/VertexBuffer.h"
 #include "../IndexBuffers/IndexBuffer.h"
@@ -27,9 +27,10 @@ private:
     VertexArray cube_Va;
     VertexBufferLayout cube_Layout;
     std::unique_ptr<Renderer> cube_render;
+    Logger::LogFile &p_File;
 
 public:
-    CubeStructures();
+    CubeStructures(Logger::LogFile &LogFile);
     void DrawGeometry(const ShaderInitialize &);
     void Clear(float *color);
 

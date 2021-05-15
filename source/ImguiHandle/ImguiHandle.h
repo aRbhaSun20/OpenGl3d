@@ -1,6 +1,11 @@
 #pragma once
 
-#include "../precomz.h"
+#include <Precomz/precomz.h>
+
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
+#include <imgui/imgui.h>
 #include "ImGuiBuild.h"
 
 #include "../Texture/Texture.h"

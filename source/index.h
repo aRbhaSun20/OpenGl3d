@@ -1,7 +1,9 @@
 #pragma once
-#include "precomz.h"
+#include <Precomz/precomz.h>
 
 // custom libraries
+#include <glad/glad.h> //glad for opengl libraries
+#include <GLFW/glfw3.h>  //opengl library
 
 // TimeStep, ExecuteCommands Headers
 #include "Core/Timestep.h"        // Timestep for frameRate Duration Header

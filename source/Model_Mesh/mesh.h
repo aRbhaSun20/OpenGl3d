@@ -1,13 +1,16 @@
 #pragma once
 
-#include "../precomz.h"
+#include <Precomz/precomz.h>
+
+#include <glad/glad.h>  //glad for opengl libraries
+#include <GLFW/glfw3.h> //opengl library
+
+#include <glm/glm.hpp> //maths library
+#include <glm/gtc/matrix_transform.hpp>
 
 #include "../VertexBuffers/VertexBuffer.h"
 #include "../IndexBuffers/IndexBuffer.h"
 #include "../Shaders/ShaderInitialize.h"
-
-#include <string>
-#include <vector>
 
 // Logger file
 #include "../Core/LogFile.h"

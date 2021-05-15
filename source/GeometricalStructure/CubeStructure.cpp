@@ -4,7 +4,8 @@
 #include <glm/glm.hpp>
 #include <vector>
 
-CubeStructures::CubeStructures()
+CubeStructures::CubeStructures(Logger::LogFile &LogFile)
+    : p_File(LogFile)
 {
     // Logger::Log LogOut;
     // LogOut.Init();
