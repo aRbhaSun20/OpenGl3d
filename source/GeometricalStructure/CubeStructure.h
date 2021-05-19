@@ -33,7 +33,9 @@ public:
     CubeStructures(Logger::LogFile &LogFile);
     void DrawGeometry(const ShaderInitialize &);
     void Clear(float *color);
-
+    ~CubeStructures(){
+        CORE_WARN("Cube Structure Closing");
+    };
 public:
     VertexBuffer getVertexBuff() { return cube_Vb; };
     IndexBuffer getIndexBuff() { return cube_Ib; };

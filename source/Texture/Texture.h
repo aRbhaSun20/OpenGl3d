@@ -25,13 +25,13 @@ private:
     Logger::LogFile &p_File;
 
 public:
-    Texture(std::string path, std::string typeName, unsigned int slot, Logger::LogFile &LogFile);
+    Texture(Logger::LogFile &LogFile, std::string path, std::string typeName, unsigned int slot);
     ~Texture();
     void Bind(unsigned int slot = 0) const;
     void Unbind() const;
     void ReBind(std::string path);
 
-    Texture(const std::string &path, Logger::LogFile &LogFile);
+    Texture(Logger::LogFile &LogFile,const std::string &path);
     // Assigns a texture unit to a texture
     void texUnit(ShaderInitialize &shader, const char *uniform, unsigned int unit);
     void LoadImage();

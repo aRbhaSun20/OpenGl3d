@@ -17,12 +17,15 @@ void Model::loadModel(std::string const &path)
     if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) // if is Not Zero
     {
         std::cout << "ERROR::ASSIMP:: " << importer.GetErrorString() << std::endl;
+        CORE_CRITICAL("ERROR::ASSIMP");
+        CORE_CRITICAL(importer.GetErrorString());
         return;
     }
     // retrieve the directory path of the filepath
     directory = path.substr(0, path.find_last_of('/'));
     // process ASSIMP's root node recursively
     processNode(scene->mRootNode, scene);
+    CORE_INFO("Processing Node Complete");
 }
 
 void Model::processNode(aiNode *node, const aiScene *scene)
@@ -73,7 +76,7 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene)
             // use models where a vertex can have multiple texture coordinates so we always take the first set (0).
             vec.x = mesh->mTextureCoords[0][i].x;
             vec.y = mesh->mTextureCoords[0][i].y;
-            vertex.TexCoords = vec; 
+            vertex.TexCoords = vec;
             // tangent
             vector.x = mesh->mTangents[i].x;
             vector.y = mesh->mTangents[i].y;

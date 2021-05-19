@@ -27,9 +27,13 @@ public:
     ProjectionMatrix(float Zoom, float AspectRatio, float zNear, float zFar, Logger::LogFile &LogFile)
         : m_ZoomLevel(Zoom), m_AspectRatio(AspectRatio), m_Zfar(zFar), m_Znear(zNear), p_File(LogFile)
     {
-        // log.Initdiffer(fileName,identity);
         m_Projection = glm::perspective(glm::radians(m_ZoomLevel), m_AspectRatio, m_Znear, m_Zfar);
-        // m_Projection = glm::inverse(m_Projection);
+        CORE_INFO("Projection Matrix Created");
+    };
+
+    ~ProjectionMatrix()
+    {
+        CORE_WARN("Projection Matrix Dissolved");
     };
 
     glm::mat4 GetProjectionMatrix() { return m_Projection; };
@@ -40,7 +44,7 @@ public:
         m_AspectRatio = AspectRatio;
         m_Znear = zNear;
         m_Zfar = zFar;
-        m_Projection = glm::perspective(glm::radians(m_ZoomLevel), m_AspectRatio, m_Znear, m_Znear);
+        m_Projection = glm::perspective(glm::radians(m_ZoomLevel), m_AspectRatio, 1.0f,100.0f);
         m_Projection = glm::inverse(m_Projection);
     }
 };

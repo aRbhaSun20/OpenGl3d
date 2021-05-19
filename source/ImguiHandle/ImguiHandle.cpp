@@ -16,7 +16,7 @@ void ImguiHandle::OnAttach()
 
     // io.Fonts->AddFontFromFileTTF("assets/fonts/opensans/OpenSans-Bold.ttf", 18.0f);
     // io.FontDefault = io.Fonts->AddFontFromFileTTF("assets/fonts/opensans/OpenSans-Regular.ttf", 18.0f);
-
+    CORE_INFO("Imgui Context Created");
     // Setup Dear ImGui style
     ImGui::StyleColorsDark();
     //ImGui::StyleColorsClassic();
@@ -25,15 +25,18 @@ void ImguiHandle::OnAttach()
     ImGuiStyle &style = ImGui::GetStyle();
     if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
     {
-        style.WindowRounding = 0.0f;
+        style.WindowRounding = 1.0f;
+
         style.Colors[ImGuiCol_WindowBg].w = 1.0f;
     }
 
     SetDarkThemeColors();
-
+    CORE_INFO("Imgui Style Selected");
     // Setup Platform/Renderer backends
-    ImGui_ImplGlfw_InitForOpenGL(m_Window, true);
+    ImGui_ImplGlfw_InitForOpenGL(m_Initiate.getWindowReference(), true);
     ImGui_ImplOpenGL3_Init(m_Version);
+
+    CORE_INFO("Imgui Backend Selected -> OpenGL-Glad");
 }
 
 void ImguiHandle::CreateNewFrame()
@@ -46,7 +49,7 @@ void ImguiHandle::CreateNewFrame()
 void ImguiHandle::DestroyCreatedFrame()
 {
     ImGuiIO &io = ImGui::GetIO();
-    io.DisplaySize = ImVec2((float)m_Width, (float)m_Height);
+    io.DisplaySize = ImVec2(m_Initiate.getWidth(),m_Initiate.getHeight());
 
     // Rendering
     ImGui::Render();
@@ -61,22 +64,14 @@ void ImguiHandle::DestroyCreatedFrame()
     }
 }
 
-void ImguiHandle::DrawElements()
+void ImguiHandle::Begin()
 {
-    {
-        ImGui::Begin("Hello, world!"); // Create a window called "Hello, world!" and append into it.
+    ImGui::Begin("New Window");
+}
 
-        if (ImGui::Button("Open File Dialog"))
-        {
-            m_ExecuteCommands.ExecuteSingleCommand("zenity --file-selection --title='Select a Texture'");
-
-            m_Texture.ReBind(m_ExecuteCommands.GetSingleResult());
-        }
-
-        ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
-
-        ImGui::End();
-    }
+void ImguiHandle::End()
+{
+    ImGui::End();
 }
 
 ImguiHandle::~ImguiHandle()
@@ -84,6 +79,7 @@ ImguiHandle::~ImguiHandle()
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
     ImGui::DestroyContext();
+    CORE_WARN("Imgui Handler Closing");
 }
 
 void ImguiHandle::SetDarkThemeColors()

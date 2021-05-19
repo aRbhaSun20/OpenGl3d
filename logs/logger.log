@@ -1,0 +1,50 @@
+[22:07:24] [info] 3dEngine: Perfective Camera Setup Starting
+[22:07:24] [info] 3dEngine: Perfective Camera Setup Complete
+[22:07:24] [warning] 3dEngine: Current Execution Starting
+[22:07:24] [info] 3dEngine: window creation complete
+[22:07:24] [info] 3dEngine: Execution Starting
+[22:07:24] [trace] 3dEngine: Event Declaration Starting
+[22:07:24] [info] 3dEngine: vertex position declaration and binding complete
+[22:07:24] [info] 3dEngine: vertex index declaration and binding complete
+[22:07:24] [info] 3dEngine: Processing Node Complete
+[22:07:24] [info] 3dEngine: load complete
+[22:07:24] [info] 3dEngine: Separate shaders extracted
+[22:07:24] [info] 3dEngine: Compiling shader successful
+[22:07:24] [info] 3dEngine: Compiling shader successful
+[22:07:24] [info] 3dEngine: Creating shader complete
+[22:07:24] [info] 3dEngine: renderer id for shaders generated
+[22:07:24] [info] 3dEngine: Separate shaders extracted
+[22:07:24] [info] 3dEngine: Compiling shader successful
+[22:07:24] [info] 3dEngine: Compiling shader successful
+[22:07:24] [info] 3dEngine: Creating shader complete
+[22:07:24] [info] 3dEngine: renderer id for shaders generated
+[22:07:24] [info] 3dEngine: Separate shaders extracted
+[22:07:24] [info] 3dEngine: Compiling shader successful
+[22:07:24] [info] 3dEngine: Compiling shader successful
+[22:07:24] [info] 3dEngine: Creating shader complete
+[22:07:24] [info] 3dEngine: renderer id for shaders generated
+[22:07:24] [info] 3dEngine: Projection Matrix Created
+[22:07:24] [info] 3dEngine: Model Matrix Created
+[22:07:24] [info] 3dEngine: Model Matrix Created
+[22:07:24] [info] 3dEngine: Mvp Matrix Declaration
+[22:07:24] [info] 3dEngine: Texture generated and stored in buffer
+[22:07:24] [info] 3dEngine: Texture generated and stored in buffer
+[22:07:24] [info] 3dEngine: Particular Material Light Properties selected
+[22:07:24] [info] 3dEngine: Imgui Context Created
+[22:07:24] [info] 3dEngine: Imgui Style Selected
+[22:07:24] [info] 3dEngine: Imgui Backend Selected -> OpenGL-Glad
+[22:07:32] [warning] 3dEngine: Imgui Handler Closing
+[22:07:32] [warning] 3dEngine: Light Declaration Closing
+[22:07:32] [trace] 3dEngine: Texture CLosing
+[22:07:32] [trace] 3dEngine: Texture CLosing
+[22:07:32] [warning] 3dEngine: Mvp Matrix Dissolved
+[22:07:32] [warning] 3dEngine: Model Matrix Dissolved
+[22:07:32] [warning] 3dEngine: Model Matrix Dissolved
+[22:07:32] [warning] 3dEngine: Projection Matrix Dissolved
+[22:07:32] [warning] 3dEngine: Model Load Closing
+[22:07:32] [warning] 3dEngine: Cube Structure Closing
+[22:07:32] [warning] 3dEngine: Current Execution Complete
+[22:07:32] [warning] 3dEngine: Event Declaration Closing
+[22:07:32] [warning] 3dEngine: Execution Closing
+[22:07:32] [warning] 3dEngine: Window Close Complete
+[22:07:32] [warning] 3dEngine: Perfective Camera Setup Closing

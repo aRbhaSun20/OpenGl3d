@@ -27,7 +27,12 @@ public:
     MvpMatrix(Logger::LogFile &LogFile)
         : p_File(LogFile)
     {
-        // log.Initdiffer(fileName,identity);
+        CORE_INFO("Mvp Matrix Declaration");
+    }
+    
+    ~MvpMatrix()
+    {
+        CORE_WARN("Mvp Matrix Dissolved");
     }
 
     void setMvpMatrix(ProjectionMatrix &, PerspectiveCamera &, ModelMatrix &);

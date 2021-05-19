@@ -7,14 +7,14 @@
 
 #include <imgui/imgui.h>
 #include "ImGuiBuild.h"
-
-#include "../Texture/Texture.h"
 #include "../Core/ExecuteCommands.h"
+#include "../Initializer/Initialize.h"
 
 // Logger file
 #include "../Core/LogFile.h"
 
 class Texture;
+class Initialize;
 class ImguiHandle
 {
 private:
@@ -23,11 +23,17 @@ private:
     int m_Width, m_Height;
     const char *m_Version;
     ExecuteCommands &m_ExecuteCommands;
-    Texture &m_Texture;
+    Logger::LogFile &p_File;
+    Initialize &m_Initiate;
 
 public:
-    ImguiHandle(GLFWwindow *window, ExecuteCommands &executeCommands,Texture &texture, const char *version, const int Width, const int Height)
-        : m_Window(window), m_Width(Width), m_Height(Height), m_Version(version), m_ExecuteCommands(executeCommands),m_Texture(texture){};
+    ImguiHandle(Initialize &Initiate, ExecuteCommands &executeCommands, const char *version,
+                Logger::LogFile &LogFile)
+        : m_Initiate(Initiate), m_Version(version),
+          m_ExecuteCommands(executeCommands), p_File(LogFile)
+    {
+        OnAttach();
+    };
 
     virtual void OnAttach();
     // virtual void OnDetach();
@@ -39,8 +45,12 @@ public:
     // static imgui_ext::file_browser_modal fileBrowser("Import");
 
     void RenderElements();
-    void DrawElements();
+    void Begin();
+    void End();
 
     void SetDarkThemeColors();
     ~ImguiHandle();
+
+    inline const int getWidth() { return m_Width; };
+    inline const int getHeight() { return m_Height; };
 };

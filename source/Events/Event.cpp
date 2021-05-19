@@ -30,30 +30,6 @@ void Event::Event_Input_Callback()
 
     else if (glfwGetKey(m_Window, Key::LeftShift) == GLFW_RELEASE)
         m_View.ProcessKeyboard(Camera_Movement::SHIFT_RELEASE, m_Timestep.GetSeconds());
-
-    if (glfwGetMouseButton(m_Window, Mouse::ButtonLeft) == GLFW_PRESS)
-    {
-        if (sensitivity > 0)
-            sensitivity *= -1;
-        Event_Mouse_Callback();
-    }
-    else if (glfwGetMouseButton(m_Window, Mouse::ButtonLeft) == GLFW_RELEASE)
-    {
-        glfwSetInputMode(m_Window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-        firstMouse = true;
-    }
-
-    if (glfwGetMouseButton(m_Window, Mouse::ButtonRight) == GLFW_PRESS)
-    {
-        if (sensitivity < 0)
-            sensitivity *= -1;
-        Event_Mouse_Callback();
-    }
-    else if (glfwGetMouseButton(m_Window, Mouse::ButtonRight) == GLFW_RELEASE)
-    {
-        glfwSetInputMode(m_Window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-        firstMouse = true;
-    }
     // m_View.ProcessMouseMovement(xMouse, yMouse, WIDTH, HEIGHT, true);
 }
 

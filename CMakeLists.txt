@@ -85,7 +85,6 @@ set(MODEL_MESH_FILES
 "${MODEL_MESH_DIR}/mesh.h" "${MODEL_MESH_DIR}/mesh.cpp" 
 "${MODEL_MESH_DIR}/model.h" "${MODEL_MESH_DIR}/model.cpp")
 
-
 #Light Contents
 set(LIGHT_DIR "${SRC_DIR}/Light")
 set(LIGHT_FILES "${LIGHT_DIR}/Light.h")
@@ -98,7 +97,6 @@ set(SECONDARY "${SRC_DIR}/index.h" "${INITIALIZER_FILES}"
     "${RENDERER_FILES}" "${GEOMETRICAL_FILES}" "${MODEL_MESH_FILES}"
     "${LIGHT_FILES}" "${IMGUI_HANDLER_FILES}" 
 )
- 
 
 # spdlog libraires
 file(GLOB_RECURSE SPDLOG

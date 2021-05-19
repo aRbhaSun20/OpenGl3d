@@ -18,8 +18,15 @@ struct Vertex
     glm::vec2 TexCoords;
     // tangent
     glm::vec3 Tangent;
-    // bitangent
+    // // bitangent
     glm::vec3 Bitangent;
+};
+
+struct Positions
+{
+    glm::vec3 vertices;
+    glm::vec2 textures;
+    glm::vec3 normals;
 };
 
 class VertexBuffer
@@ -33,6 +40,7 @@ public:
     void AddBuffer(const void *data, unsigned int size);
     void AddBufferv(std::vector<float> data);
     void AddBufferVertex(std::vector<Vertex> data);
+    void AddBufferPosition(std::vector<Positions> data);
 
     void Bind() const;
     void UnBind() const;

@@ -1,10 +1,12 @@
 #include "ShaderInitialize.h"
 
-ShaderInitialize::ShaderInitialize(const std::string &filepath,Logger::LogFile &LogFile)
-    : m_RendererID(0),p_File(LogFile)
+ShaderInitialize::ShaderInitialize(const std::string &filepath, Logger::LogFile &LogFile)
+    : m_RendererID(0), p_File(LogFile)
 {
     ShaderProgramSource source = ParseShader(filepath);
+    CORE_INFO("Separate shaders extracted");
     m_RendererID = CreateShader(source.VertexSource, source.FragmentSource);
+    CORE_INFO("renderer id for shaders generated");
 }
 
 ShaderInitialize::~ShaderInitialize()
@@ -67,14 +69,19 @@ unsigned int ShaderInitialize::CompileShader(unsigned int type, const std::strin
         std::cout << "Failed to compile" << (type == GL_VERTEX_SHADER ? "Vertex" : " Fragment") << "Shader!" << std::endl;
         std::cout << infoLog << std::endl;
 
+        CORE_CRITICAL("Failed to compile Shader");
+        CORE_CRITICAL(infoLog);
+
         glDeleteShader(id);
         return 0;
     }
+    CORE_INFO("Compiling shader successful");
     return id;
 }
 
 unsigned int ShaderInitialize::CreateShader(const std::string &vertexShader, const std::string &fragmentShader)
 {
+
     unsigned int program = glCreateProgram();
     unsigned int vs = CompileShader(GL_VERTEX_SHADER, vertexShader);
     unsigned int fs = CompileShader(GL_FRAGMENT_SHADER, fragmentShader);
@@ -83,6 +90,8 @@ unsigned int ShaderInitialize::CreateShader(const std::string &vertexShader, con
     glAttachShader(program, fs);
     glLinkProgram(program);
     glValidateProgram(program);
+
+    CORE_INFO("Creating shader complete");
 
     glDeleteShader(vs);
     glDeleteShader(fs);

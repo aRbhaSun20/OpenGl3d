@@ -2,7 +2,7 @@
 
 #include <Precomz/precomz.h>
 
-#include <glad/glad.h>  //glad for opengl libraries
+#include <glad/glad.h> //glad for opengl libraries
 
 #include <glm/glm.hpp> //maths library
 #include <glm/gtc/matrix_transform.hpp>
@@ -12,7 +12,6 @@
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
-
 
 #include "mesh.h"
 #include "../Shaders/ShaderInitialize.h"
@@ -29,6 +28,7 @@ public:
     void processNode(aiNode *node, const aiScene *scene);
     Mesh processMesh(aiMesh *mesh, const aiScene *scene);
     std::vector<Textures> loadMaterialTextures(aiMaterial *mat, aiTextureType type, std::string typeName);
+    Logger::LogFile &p_File;
 
 public:
     /*  Model Data */
@@ -38,11 +38,17 @@ public:
     bool gammaCorrection;
 
     /*  Functions   */
-    Model(std::string const &path, bool gamma = false): gammaCorrection(gamma)
+    Model(std::string const &path, Logger::LogFile &LogFile, bool gamma = false)
+        : gammaCorrection(gamma), p_File(LogFile)
     {
         loadModel(path);
-        std::cout << "load complete";
+        CORE_INFO("load complete");
     };
+
+    ~Model()
+    {
+        CORE_WARN("Model Load Closing");
+    }
 
     void Draw(ShaderInitialize &shader);
     // Model() = default;

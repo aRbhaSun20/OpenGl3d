@@ -19,7 +19,6 @@
 // Logger file
 #include "../Core/LogFile.h"
 
-
 class Event
 {
 private:
@@ -38,9 +37,19 @@ private:
     Logger::LogFile &p_File;
 
 public:
-    Event(GLFWwindow *window, PerspectiveCamera &View, Timestep &timestep, int width, int height, Logger::LogFile &LogFile)
-        : m_Window(window), WIDTH(width), HEIGHT(height), m_View(View), m_Timestep(timestep), p_File(LogFile){};
+    Event(GLFWwindow *window, PerspectiveCamera &View, Timestep &timestep,
+          int width, int height, Logger::LogFile &LogFile)
+        : m_Window(window), WIDTH(width), HEIGHT(height),
+          m_View(View), m_Timestep(timestep), p_File(LogFile)
+    {
+        CORE_TRACE("Event Declaration Starting");
+    };
 
+    ~Event()
+    {
+        CORE_WARN("Event Declaration Closing");
+    }
+    
     void Event_Input_Callback();
 
     void Event_Mouse_Callback();

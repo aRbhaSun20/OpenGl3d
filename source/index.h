@@ -21,7 +21,7 @@
 #include "Texture/Texture.h"
 
 // Imgui Gui Handler Headers
-// #include "ImguiHandle/ImguiHandle.h"
+#include "ImguiHandle/ImguiHandle.h"
 
 // model,view,projection Headers
 #include "Mvps/MvpMatrix.h"

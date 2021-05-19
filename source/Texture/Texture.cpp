@@ -1,6 +1,6 @@
 #include "Texture.h"
 
-Texture::Texture(std::string path, std::string typeName, unsigned int slot, Logger::LogFile &LogFile)
+Texture::Texture(Logger::LogFile &LogFile, std::string path, std::string typeName, unsigned int slot)
     : m_FilePath(path), m_LocalBuffer(nullptr),
       m_Width(0), m_Height(0), m_BPP(0), p_File(LogFile)
 {
@@ -38,14 +38,16 @@ Texture::Texture(std::string path, std::string typeName, unsigned int slot, Logg
         // Deletes the image data as it is already in the OpenGL Texture object
         stbi_image_free(m_LocalBuffer);
         Unbind();
+        CORE_INFO("Texture generated and stored in buffer");
     }
     else
     {
         std::cout << "Failed to load texture" << std::endl;
+        CORE_CRITICAL("Failed to load texture");
     }
 }
 
-Texture::Texture(const std::string &path, Logger::LogFile &LogFile)
+Texture::Texture(Logger::LogFile &LogFile, const std::string &path)
     : m_FilePath(path), m_LocalBuffer(nullptr),
       m_Width(0), m_Height(0), m_BPP(0), p_File(LogFile)
 {
@@ -59,6 +61,7 @@ Texture::Texture(const std::string &path, Logger::LogFile &LogFile)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
     LoadImage();
+    CORE_INFO("Texture generated and stored in buffer");
 }
 
 void Texture::LoadImage()
@@ -76,7 +79,7 @@ void Texture::LoadImage()
         std::cout << "Failed to load texture" << std::endl;
     }
 
-    // glBindTexture(GL_TEXTURE_2D, 0);
+    glBindTexture(GL_TEXTURE_2D, 0);
 
     stbi_image_free(m_LocalBuffer);
 }
@@ -94,6 +97,7 @@ void Texture::texUnit(ShaderInitialize &shader, const char *uniform, unsigned in
 Texture::~Texture()
 {
     glDeleteTextures(1, &m_RendererID);
+    CORE_TRACE("Texture CLosing");
 }
 
 void Texture::Bind(unsigned int slot) const

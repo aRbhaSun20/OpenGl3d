@@ -61,7 +61,9 @@ public:
 		: p_File(LogFile), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY),
 		  Zoom(ZOOM), Position(position), WorldUp(up), Yaw(yaw), Pitch(pitch)
 	{
+		CORE_INFO("Perfective Camera Setup Starting");
 		updateCameraVectors();
+		CORE_INFO("Perfective Camera Setup Complete");
 	}
 	PerspectiveCamera(Logger::LogFile &LogFile, float posX, float posY, float posZ, float upX,
 					  float upY, float upZ, float yaw = YAW, float pitch = PITCH)
@@ -70,6 +72,11 @@ public:
 	{
 		updateCameraVectors();
 	}
+
+	~PerspectiveCamera()
+	{
+		CORE_WARN("Perfective Camera Setup Closing");
+	};
 
 	glm::mat4 GetViewMatrix()
 	{

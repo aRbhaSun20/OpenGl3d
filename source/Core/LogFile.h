@@ -11,6 +11,7 @@ using Ref = std::shared_ptr<T>;
 #include <spdlog/fmt/ostr.h>
 
 #include <spdlog/sinks/stdout_color_sinks.h>
+#include <spdlog/async.h>
 #include <spdlog/sinks/basic_file_sink.h>
 
 #pragma warning(pop)
@@ -29,8 +30,8 @@ namespace Logger
 } // namespace Logger
 
 // Core log macros
-#define CORE_TRACE(...) ::Logger::Log::GetCoreLogger()->trace(__VA_ARGS__)
-#define CORE_INFO(...) ::Logger::Log::GetCoreLogger()->info(__VA_ARGS__)
-#define CORE_WARN(...) ::Logger::Log::GetCoreLogger()->warn(__VA_ARGS__)
-#define CORE_ERROR(...) ::Logger::Log::GetCoreLogger()->error(__VA_ARGS__)
-#define CORE_CRITICAL(...) ::Logger::Log::GetCoreLogger()->critical(__VA_ARGS__)
+#define CORE_TRACE(...) ::Logger::LogFile::GetCoreLogger()->trace(__VA_ARGS__)
+#define CORE_INFO(...) ::Logger::LogFile::GetCoreLogger()->info(__VA_ARGS__)
+#define CORE_WARN(...) ::Logger::LogFile::GetCoreLogger()->warn(__VA_ARGS__)
+#define CORE_ERROR(...) ::Logger::LogFile::GetCoreLogger()->error(__VA_ARGS__)
+#define CORE_CRITICAL(...) ::Logger::LogFile::GetCoreLogger()->critical(__VA_ARGS__)

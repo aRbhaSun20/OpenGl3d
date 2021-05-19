@@ -21,6 +21,13 @@ void VertexBuffer ::AddBufferVertex(std::vector<Vertex> data)
     glBufferData(GL_ARRAY_BUFFER, data.size() * sizeof(Vertex), &data[0], GL_STATIC_DRAW);
 };
 
+void VertexBuffer ::AddBufferPosition(std::vector<Positions> data)
+{
+    glGenBuffers(1, &m_RendererId);
+    glBindBuffer(GL_ARRAY_BUFFER, m_RendererId);
+    glBufferData(GL_ARRAY_BUFFER, data.size() * sizeof(Positions), &data[0], GL_STATIC_DRAW);
+};
+
 void VertexBuffer ::Bind() const
 {
     glBindBuffer(GL_ARRAY_BUFFER, m_RendererId);

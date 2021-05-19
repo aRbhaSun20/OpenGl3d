@@ -17,6 +17,12 @@ void Mesh::setupMesh()
     
     mesh_Vb.AddBufferVertex(vertices);
 
+    // cube_Layout.Push<float>(3);
+    // cube_Layout.Push<float>(3);
+    // cube_Layout.Push<float>(2);
+
+    // cube_Va.AddBuffer(mesh_Vb, cube_Layout);
+
     mesh_Ib.AddBufferv(indices);
     // vertex positions
     glEnableVertexAttribArray(0);
@@ -67,9 +73,10 @@ void Mesh::Draw(ShaderInitialize shader)
 
     // draw mesh
     glBindVertexArray(VAO);
+    // cube_Va.Bind();
 
     glDrawElements(GL_TRIANGLES, mesh_Ib.GetCount(), GL_UNSIGNED_INT, nullptr);
-    glBindVertexArray(0);
+    // glBindVertexArray(0);
 
     // always good practice to set everything back to defaults once configured.
     glActiveTexture(GL_TEXTURE0);

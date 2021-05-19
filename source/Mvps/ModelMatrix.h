@@ -21,14 +21,20 @@ public:
     ModelMatrix(glm::vec3 Translation, float Angle, glm::vec3 Axis, Logger::LogFile &LogFile, float scale = 1.0f)
         : m_Translation(Translation), m_RotationAxis(Axis), m_RotationAngle(Angle), m_Scale(scale), p_File(LogFile)
     {
-        // log.Initdiffer(fileName,identity);
+
         if (Translation != glm::vec3(0.0f, 0.0f, 0.0f))
             m_Model = glm::translate(glm::mat4(1.0f), m_Translation);
         if (Angle != 0.0f)
             m_Model = glm::rotate(m_Model, glm::radians(m_RotationAngle), m_RotationAxis);
         if (scale != 1.0f)
             m_Model = glm::scale(m_Model, glm::vec3(m_Scale));
+        CORE_INFO("Model Matrix Created");
     };
+
+    ~ModelMatrix()
+    {
+        CORE_WARN("Model Matrix Dissolved");
+    }
 
     void setModelMatrix(glm::vec3 Translation, float Angle, glm::vec3 Axis)
     {

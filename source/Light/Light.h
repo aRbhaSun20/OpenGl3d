@@ -49,6 +49,12 @@ public:
         : Lighttype(ltype), l_MaterialType(MaterialType), p_File(LogFile)
     {
         setMaterialLight(MaterialType);
+        CORE_INFO("Particular Material Light Properties selected");
+    }
+
+    ~Light()
+    {
+        CORE_WARN("Light Declaration Closing");
     }
 
     void setMaterialLight(std::string MaterialType)
@@ -61,7 +67,7 @@ public:
 
         // ambient material vector is the color the surface reflects under ambient lighting, usually the surface color
         ambientStrength = {materialSelected_Ambient[0], materialSelected_Ambient[1], materialSelected_Ambient[2]};
-        ambientIntensity = {0.5f, 0.5f, 0.5f};
+        ambientIntensity = {0.9f, 0.9f, 0.9f};
         // diffuse material vector is the color the surface reflects under diffuse lighting, usually the desired surface color
         diffuseStrength = {materialSelected_Diffuse[0], materialSelected_Diffuse[1], materialSelected_Diffuse[2]};
         diffuseIntensity = {0.8f, 0.8f, 0.8f};

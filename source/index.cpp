@@ -11,8 +11,8 @@ glm::vec3 cameraUp(0.0f, 1.0f, 0.0f);
 // timing
 float lastFrame = 0.0f;
 
-float lastX = WIDTH / 2.0;
-float lastY = HEIGHT / 2.0;
+float lastX = WIDTH / 1.0;
+float lastY = HEIGHT / 1.0;
 
 bool firstMouse = true;
 Timestep timestep;
@@ -21,13 +21,14 @@ Timestep timestep;
 Logger::LogFile LogFile;
 
 // view matrix defination
-PerspectiveCamera p_camera(LogFile,{0.0f, 0.0f, 3.0f});
+PerspectiveCamera p_camera(LogFile, {0.0f, 0.0f, 3.0f});
 
 void scroll_callback(GLFWwindow *window, double xoffset, double yoffset);
 
 int main(int argc, char *argv[])
 {
     // glfw initializations
+    CORE_WARN("Current Execution Starting");
 
     Initialize Initiate(WIDTH, HEIGHT, "InitGL", LogFile);
 
@@ -48,13 +49,14 @@ int main(int argc, char *argv[])
         glEnable(GL_DEPTH_TEST);
         // glEnable(GL_BLEND);
         // glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        glEnable(GL_CULL_FACE);
 
         CubeStructures cube(LogFile);
-        Model model("../Models/Cube/cube.obj");
+        Model model("../Models/Cube/cube.obj", LogFile);
 
         ShaderInitialize shaderColorCube("../source/Shaders/Color.shader", LogFile);
+
         ShaderInitialize shaderLight("../source/Shaders/Light.shader", LogFile);
+
         ShaderInitialize ModelLoader("../source/Shaders/loading.shader", LogFile);
 
         // projection matrix defination
@@ -73,25 +75,28 @@ int main(int argc, char *argv[])
         glm::vec3 Light_Translation(1.2f, 1.0f, 0.8f);
         float Light_Angle = 0.0f;
         glm ::vec3 Light_AxisRotation(0.0f, 0.0f, 0.0f);
-        ModelMatrix Light_Cube(Light_Translation, Light_Angle, Light_AxisRotation,LogFile ,0.2f);
+        ModelMatrix Light_Cube(Light_Translation, Light_Angle, Light_AxisRotation, LogFile, 0.2f);
 
         // Mvp matrix defination
         MvpMatrix mvp(LogFile);
 
-        Texture Wooden_Box("../images/woodenContainer.png", LogFile);
+        Texture Wooden_Box(LogFile, "../images/woodenContainer.png");
         Wooden_Box.Bind(0);
-        Texture Steel_Frame("../images/woodenContainerSspecular.png", LogFile);
+        Texture Steel_Frame(LogFile, "../images/woodenContainerSspecular.png");
         Steel_Frame.Bind(1);
 
         glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
 
         // select light type
-        Light lightType(LightType::PointLightSource, "Gold", LogFile);
+        Light lightType(LightType::SpotLightSource, "Gold", LogFile);
 
         // select bg color
         float BGcolor[4] = {0.4f, 0.2f, 0.2f, 1.0f};
         shaderColorCube.SetUniform1i("u_Material.diffuseTexture", 0);
         shaderColorCube.SetUniform1i("u_Material.specularTexture", 1);
+
+        ImguiHandle Imhand(Initiate, ExeCommands, "#version 330", LogFile);
+
         // render loop
         while (!glfwWindowShouldClose(Initiate.getWindowReference()))
         {
@@ -111,7 +116,7 @@ int main(int argc, char *argv[])
 
             cube.Clear(BGcolor);
             {
-                Object_Cube.setModelRotation(timestep.GetSeconds(), {0.5f, 1.0f, 0.0f});
+                Object_Cube.setModelRotation(timestep.GetSeconds(), {0.0f, 1.0f, 0.0f});
                 // draw the texture
                 shaderColorCube.Bind();
 
@@ -131,19 +136,30 @@ int main(int argc, char *argv[])
 
             {
                 shaderLight.Bind();
-
+                ModelLoader.Bind();
                 shaderLight.SetUniform3fv("u_lightColor", lightColor);
                 // // draw the texture
                 mvp.setMvpMatrix(Projection, p_camera, Light_Cube);
-                shaderLight.SetUniformMat4f("u_MVP", mvp.getMvpMatrix());
+                // shaderLight.SetUniformMat4f("u_MVP", mvp.getMvpMatrix());
+                ModelLoader.SetUniformMat4f("u_MVP", mvp.getMvpMatrix());
                 // render box
                 model.Draw(ModelLoader);
+            }
+
+            {
+                Imhand.CreateNewFrame();
+                // Imhand.Begin();
+
+                // Imhand.End();
+
+                Imhand.DestroyCreatedFrame();
             }
 
             glfwSwapBuffers(Initiate.getWindowReference());
             glfwPollEvents();
         }
     }
+    CORE_WARN("Current Execution Complete");
 
     return 0;
 }

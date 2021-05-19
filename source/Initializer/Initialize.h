@@ -37,4 +37,8 @@ private:
     {
         glViewport(0, 0, width, height);
     }
+
+public:
+    inline const int getWidth() { return windowWidth; };
+    inline const int getHeight() { return windowHeight; };
 };

@@ -8,19 +8,20 @@
 #include <glm/glm.hpp> //maths library
 #include <glm/gtc/matrix_transform.hpp>
 
+#include "../VertexArrays/VertexArray.h"
 #include "../VertexBuffers/VertexBuffer.h"
 #include "../IndexBuffers/IndexBuffer.h"
 #include "../Shaders/ShaderInitialize.h"
-
+#include "../VertexBufferLayouts/VertexBufferLayout.h"
 // Logger file
 #include "../Core/LogFile.h"
 
-struct Vertex;
-
+class VertexBufferLayout;
 class VertexBuffer;
 class IndexBuffer;
 class Renderer;
 class ShaderInitialize;
+class VertexArray;
 struct Textures
 {
     unsigned int id;
@@ -31,21 +32,23 @@ struct Textures
 class Mesh
 {
 
-    private:
-        VertexBuffer mesh_Vb;
-        IndexBuffer mesh_Ib;
+private:
+    VertexBuffer mesh_Vb;
+    IndexBuffer mesh_Ib;
+    VertexBufferLayout cube_Layout;
+    VertexArray cube_Va;
 
-    private:
-        void setupMesh();
+private:
+    void setupMesh();
 
-    public:
-        // Render data
-        unsigned int VAO;
-        // Mesh Data
-        std::vector<Vertex> vertices;
-        std::vector<unsigned int> indices;
-        std::vector<Textures> textures;
+public:
+    // Render data
+    unsigned int VAO;
+    // Mesh Data
+    std::vector<Vertex> vertices;
+    std::vector<unsigned int> indices;
+    std::vector<Textures> textures;
 
-        Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Textures> textures);
-        void Draw(ShaderInitialize shader);
+    Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Textures> textures);
+    void Draw(ShaderInitialize shader);
 };
